@@ -18,5 +18,6 @@ public class CartTest extends BaseTest {
         softAssert.assertEquals(cartName, "Sauce Labs Backpack");
         String cartPrice = driver.findElement(By.xpath("//div[@class='inventory_item_price']")).getText();
         softAssert.assertEquals(cartPrice, "29.99");
+        softAssert.assertAll();
     }
 }

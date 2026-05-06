@@ -39,5 +39,4 @@ public class LocatorsTest extends BaseTest{
         driver.findElement(By.cssSelector("[src$='.jpg']"));
         driver.findElement(By.cssSelector("[data-test*='price']"));
     }
-
 }
