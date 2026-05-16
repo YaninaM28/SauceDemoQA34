@@ -8,7 +8,11 @@ import static org.testng.Assert.assertTrue;
 
 public class CheckoutOverviewTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка overview page",
+            description = "Проверка overview с корректными данными для заказа",
+            groups = "smoke"
+    )
     public void checkOrderCompleteButton() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -22,7 +26,11 @@ public class CheckoutOverviewTest extends BaseTest {
         );
     }
 
-    @Test
+    @Test(
+            testName = "Проверка отмены формирования заказа на overview page",
+            description = "Проверка отмены на overview page",
+            groups = "regression"
+    )
     public void checkOrderCancel() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

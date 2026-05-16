@@ -6,7 +6,12 @@ import static org.testng.Assert.assertEquals;
 
 public class EndToEndTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка полного пользовательского теста",
+            description = "Проверка логирования + добавления товара + оформления заказа",
+            groups = "smoke",
+            retryAnalyzer = Retry.class
+    )
     public void checkEndToEndTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

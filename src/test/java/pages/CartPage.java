@@ -38,4 +38,14 @@ public class CartPage extends BasePage {
     public String getCartTitle() {
         return driver.findElement(TITLE_CART).getText();
     }
+
+//    ЯНАААА ДОПИШИ
+//    public void clickProduct(String product) {
+//        List<WebElement> products = driver.findElements(By.cssSelector(".inventory_item_name"));
+//        for (WebElement product : products) {
+//            if (product.getText().contains(name)){
+//
+//            }
+//        }
+//    }
 }
