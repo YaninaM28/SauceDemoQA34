@@ -6,7 +6,12 @@ import static org.testng.Assert.assertEquals;
 
 public class CheckoutInfoTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка checkout с позитивными данными",
+            description = "Проверка checkout с позитивным Именем, Фамилией и кодом",
+            priority = 1,
+            groups = "smoke"
+    )
     public void checkPositiveCheckout() {
         // сразу логин
         loginPage.open();
@@ -24,7 +29,11 @@ public class CheckoutInfoTest extends BaseTest {
                 "NO OVERVIEW!");
     }
 
-    @Test
+    @Test(
+            testName = "Проверка checkout с негативными данными",
+            description = "Проверка checkout с пустым Именем",
+            groups = "regression"
+    )
     public void checkCheckoutWithEmptyFirstName() {
         // сразу логин
         loginPage.open();
@@ -42,7 +51,11 @@ public class CheckoutInfoTest extends BaseTest {
                 "Errroooorrr -> empty first name");
     }
 
-    @Test
+    @Test(
+            testName = "Проверка checkout с негативными данными",
+            description = "Проверка checkout с пустым полем Фамилии",
+            groups = "regression"
+    )
     public void checkCheckoutWithEmptyLastName() {
         // сразу логин
         loginPage.open();
@@ -59,7 +72,11 @@ public class CheckoutInfoTest extends BaseTest {
                 "Errroooorrr -> empty last name");
     }
 
-    @Test
+    @Test(
+            testName = "Проверка checkout с негативными данными",
+            description = "Проверка checkout с пустым полем Код",
+            groups = "regression"
+    )
     public void checkCheckoutWithEmptyPostalCode() {
         // сразу логин
         loginPage.open();

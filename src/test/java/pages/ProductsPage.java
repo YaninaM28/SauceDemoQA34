@@ -2,6 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ProductsPage extends BasePage {
 
@@ -35,6 +40,8 @@ public class ProductsPage extends BasePage {
 
     public void logout() {
         driver.findElement(MENU_BUTTON).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        WebElement logoutButton = wait.until(ExpectedConditions.elementToBeClickable(LOGOUT));
         driver.findElement(LOGOUT).click();
     }
 }

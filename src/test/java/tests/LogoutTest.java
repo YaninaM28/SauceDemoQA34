@@ -6,7 +6,11 @@ import static org.testng.Assert.assertTrue;
 
 public class LogoutTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка выхода из системы",
+            description = "Проверка, что logout выполнен",
+            groups = "regression"
+    )
     public void checkLogout() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

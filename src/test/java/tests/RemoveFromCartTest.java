@@ -5,7 +5,11 @@ import org.testng.asserts.SoftAssert;
 
 public class RemoveFromCartTest extends BaseTest {
 
-    @Test
+    @Test(
+            testName = "Проверка удаления товара из корзины",
+            description = "Товар из корзины удаляется",
+            groups = "regression"
+    )
     public void checkRemoveProductFromCart() {
         SoftAssert softAssert = new SoftAssert();
         loginPage.open();
