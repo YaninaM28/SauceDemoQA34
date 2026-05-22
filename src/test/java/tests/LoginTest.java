@@ -1,7 +1,9 @@
 package tests;
 
+import io.qameta.allure.*;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.Retry;
 
 import static org.testng.Assert.assertEquals;
 
@@ -14,6 +16,16 @@ public class LoginTest extends BaseTest {
             groups = "smoke",
             retryAnalyzer = Retry.class
     )
+    @Owner("Savich Yanina")
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with positive credential")
+    @Description("Проверка логина с позитивным логином и паролем")
+    @Severity(SeverityLevel.CRITICAL)
+    @Flaky
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
+    @Issue("BUG-01")
     public void checkLoginWithPositiveCred() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -28,6 +40,13 @@ public class LoginTest extends BaseTest {
             invocationCount = 3,
             groups = "regression"
     )
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with negative credential")
+    @Description("Проверка логина с негативным логином и паролем")
+    @Severity(SeverityLevel.MINOR)
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
     public void checkLoginWithEmptyUserName() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
@@ -41,6 +60,13 @@ public class LoginTest extends BaseTest {
             description = "Проверка логина с пустым паролем",
             groups = "regression"
     )
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with empty password")
+    @Description("Проверка логина с пустым паролем")
+    @Severity(SeverityLevel.MINOR)
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
     public void checkLoginWithEmptyPassword() {
         loginPage.open();
         loginPage.login("standard_user", "");
@@ -55,6 +81,13 @@ public class LoginTest extends BaseTest {
             groups = "regression",
             enabled = false
     )
+    @Epic("Sauce Demo 1")
+    @Feature("Log in")
+    @Story("Log in with negative credential")
+    @Description("Проверка логина с негативным логином и паролем")
+    @Severity(SeverityLevel.MINOR)
+    @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
+    @TmsLink("SD-T01")
     public void checkLoginWithNegativeCred() {
         loginPage.open();
         loginPage.login("test", "test");
