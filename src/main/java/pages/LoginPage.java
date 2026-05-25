@@ -1,5 +1,6 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,16 +16,19 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
+    @Step("открытие страницы LoginPage")
     public void open() {
         driver.get("https://www.saucedemo.com");
 //        ajax как исп в методе
 //        waitForPageLoaded();
     }
 
+    @Step("Страница LoginPage открыта")
     public void isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
     }
 
+    @Step("Вход в систему с именем пользователя: '{user}' и паролем '{password}'")
     public void login(String user, String password) {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(USERNAME_FIELD));
         driver.findElement(USERNAME_FIELD).sendKeys(user);
@@ -36,6 +40,7 @@ public class LoginPage extends BasePage {
         return driver.findElement(ERROR_MESSAGE).getText();
     }
 
+    @Step("Login кнопка отображается")
     public boolean isLoginButtonDisplayed() {
         return driver.findElement(LOGIN_BUTTON).isDisplayed();
     }
