@@ -20,11 +20,13 @@ public class RemoveFromCartTest extends BaseTest {
     @TmsLink("SD-T01")
     public void checkRemoveProductFromCart() {
         SoftAssert softAssert = new SoftAssert();
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        //add product
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .addToCart("Sauce Labs Backpack")
+                .clickCart()
+                .isPageOpened();
         softAssert.assertTrue(
                 cartPage.isProductDisplayedInCart(),
                 "Нет продукта в корзине!"
