@@ -21,13 +21,18 @@ public class EndToEndTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     public void checkEndToEndTest() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.enterDataForCheckout("test", "test", "12345");
-        checkoutOverviewPage.clickFinishButton();
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .addToCart("Sauce Labs Backpack")
+                .clickCart()
+                .isPageOpened()
+                .clickCheckout()
+                .isPageOpened()
+                .enterDataForCheckout("test", "test", "12345")
+                .clickFinishButton()
+                .isPageOpened();
         assertEquals(
                 checkoutCompletePage.getPageTitle(),
                 "Checkout: Complete!",

@@ -3,6 +3,7 @@ package pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutOverviewPage extends BasePage {
 
@@ -19,12 +20,20 @@ public class CheckoutOverviewPage extends BasePage {
     }
 
     @Step("Нажатие на кнопку Finish для оформления заказа")
-    public void clickFinishButton() {
+    public CheckoutCompletePage clickFinishButton() {
         driver.findElement(FINISH_BUTTON).click();
+        return new CheckoutCompletePage(driver);
     }
 
     @Step("Нажатие Cancel для отмены оформления заказа")
-    public void clickCancelButton() {
+    public ProductsPage clickCancelButton() {
         driver.findElement(CANCEL_BUTTON).click();
+        return new ProductsPage(driver);
+    }
+
+    @Override
+    public CheckoutOverviewPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(FINISH_BUTTON));
+        return this;
     }
 }

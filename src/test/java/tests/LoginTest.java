@@ -27,8 +27,9 @@ public class LoginTest extends BaseTest {
     @TmsLink("SD-T01")
     @Issue("BUG-01")
     public void checkLoginWithPositiveCred() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce");
         assertEquals(productsPage.getTitle(),
                 "Products",
                 "SO BAAAD");
@@ -48,8 +49,8 @@ public class LoginTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T01")
     public void checkLoginWithEmptyUserName() {
-        loginPage.open();
-        loginPage.login("", "secret_sauce");
+        loginPage.open()
+                .loginWithNegativeCred("", "secret_sauce");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required",
                 "SO BAAAD");
@@ -68,8 +69,8 @@ public class LoginTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T01")
     public void checkLoginWithEmptyPassword() {
-        loginPage.open();
-        loginPage.login("standard_user", "");
+        loginPage.open()
+                .loginWithNegativeCred("standard_user", "");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Password is required",
                 "SO BAAAD");
@@ -89,8 +90,8 @@ public class LoginTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T01")
     public void checkLoginWithNegativeCred() {
-        loginPage.open();
-        loginPage.login("test", "test");
+        loginPage.open()
+                .loginWithNegativeCred("test", "test");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username and password do not match any user in this service",
                 "SO BAAAD");
@@ -98,7 +99,7 @@ public class LoginTest extends BaseTest {
 
     @DataProvider(name = "Параметризированный тест для негативного логина", indices = {0, 2})
     public Object[][] loginData() {
-        return new Object[][] {
+        return new Object[][]{
                 {"", "secret_sauce", "Epic sadface: Username is required"},
                 {"standard_user", "", "Epic sadface: Password is required"},
                 {"test", "test", "Epic sadface: Username and password do not match any user in this service"}
@@ -107,8 +108,8 @@ public class LoginTest extends BaseTest {
 
     @Test(dataProvider = "Параметризированный тест для негативного логина")
     public void checkLoginWithNegativeCred1(String user, String password, String errorMessage) {
-        loginPage.open();
-        loginPage.login(user, password);
+        loginPage.open()
+                .loginWithNegativeCred(user, password);
         assertEquals(loginPage.getErrorMessage(),
                 errorMessage,
                 "SO BAAAD");

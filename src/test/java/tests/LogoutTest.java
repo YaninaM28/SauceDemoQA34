@@ -20,9 +20,12 @@ public class LogoutTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T01")
     public void checkLogout() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.logout();
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .logout()
+                .isPageOpened();
         assertTrue(
                 loginPage.isLoginButtonDisplayed(),
                 "ты не на странице Login"

@@ -23,8 +23,15 @@ public class ProductsPage extends BasePage {
         super(driver);
     }
 
-    public void open() {
+    public ProductsPage open() {
         driver.get(BASE_URL + "/inventory.html");
+        return this;
+    }
+
+    @Override
+    public ProductsPage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(TITLE));
+        return this;
     }
 
     public String getTitle() {
@@ -32,20 +39,23 @@ public class ProductsPage extends BasePage {
     }
 
     @Step("Добавление в корзину товара с именем: '{product}'")
-    public void addToCart(String product) {
+    public ProductsPage addToCart(String product) {
         driver.findElement(By.xpath(String.format(ADD_TO_CART_PATTERN, product))).click();
+        return this;
     }
 
     @Step("Нажатие на кнопку корзина")
-    public void clickCart() {
+    public CartPage clickCart() {
         driver.findElement(CART).click();
+        return new CartPage(driver);
     }
 
     @Step("Выход из системы")
-    public void logout() {
+    public LoginPage logout() {
         driver.findElement(MENU_BUTTON).click();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         WebElement logoutButton = wait.until(ExpectedConditions.elementToBeClickable(LOGOUT));
         driver.findElement(LOGOUT).click();
+        return new LoginPage(driver);
     }
 }

@@ -23,12 +23,16 @@ public class CheckoutOverviewTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T03")
     public void checkOrderCompleteButton() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutPage.enterDataForCheckout("test", "test", "12345");
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .addToCart("Sauce Labs Backpack")
+                .clickCart()
+                .isPageOpened()
+                .clickCheckout()
+                .isPageOpened()
+                .enterDataForCheckout("test", "test", "12345");
         assertTrue(
                 checkoutOverviewPage.isFinishButtonDisplayed(),
                 "Где кнопка Finish???"
@@ -49,16 +53,21 @@ public class CheckoutOverviewTest extends BaseTest {
     @Link(name = "Аналитика", url = "https://www.saucedemo.com/")
     @TmsLink("SD-T03")
     public void checkOrderCancel() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
-        cartPage.clickCheckout();
-        checkoutOverviewPage.clickCancelButton();
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .addToCart("Sauce Labs Backpack")
+                .clickCart()
+                .isPageOpened()
+                .clickCheckout()
+                .isPageOpened()
+                .enterDataForCheckout("test", "test", "12345")
+                .clickCancelButton();
         cartPage = new CartPage(driver);
         assertEquals(
                 cartPage.getCartTitle(),
-                "Your Cart",
+                "Products",
                 "Ты не в корзине"
         );
     }

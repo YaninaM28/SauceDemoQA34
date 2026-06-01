@@ -23,13 +23,17 @@ public class CartTest extends BaseTest {
     @Issue("BUG-02")
     public void checkCart() {
         SoftAssert softAssert = new SoftAssert();
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
         String expectedProduct = "Sauce Labs Backpack";
         String expectedPrice = "$29.99";
-        //add product
-        productsPage.addToCart("Sauce Labs Backpack");
-        productsPage.clickCart();
+
+        loginPage.open()
+                .isPageOpened()
+                .login("standard_user", "secret_sauce")
+                .isPageOpened()
+                .addToCart("Sauce Labs Backpack")
+                .clickCart()
+                .isPageOpened();
+
         String actualProduct = cartPage.getProductName();
         String actualPrice = cartPage.getProductPrice();
         softAssert.assertEquals(

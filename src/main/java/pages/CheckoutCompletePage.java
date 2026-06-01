@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class CheckoutCompletePage extends BasePage {
 
@@ -13,5 +14,11 @@ public class CheckoutCompletePage extends BasePage {
 
     public String getPageTitle() {
         return driver.findElement(COMPLETE_TITLE).getText();
+    }
+
+    @Override
+    public CheckoutCompletePage isPageOpened() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(COMPLETE_TITLE));
+        return this;
     }
 }

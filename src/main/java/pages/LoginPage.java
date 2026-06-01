@@ -17,23 +17,35 @@ public class LoginPage extends BasePage {
     }
 
     @Step("открытие страницы LoginPage")
-    public void open() {
+    public LoginPage open() {
         driver.get("https://www.saucedemo.com");
+        return this;
 //        ajax как исп в методе
 //        waitForPageLoaded();
     }
-
+    @Override
     @Step("Страница LoginPage открыта")
-    public void isPageOpened() {
+    public LoginPage isPageOpened() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(LOGIN_BUTTON));
+        return this;
     }
 
     @Step("Вход в систему с именем пользователя: '{user}' и паролем '{password}'")
-    public void login(String user, String password) {
+    public ProductsPage login(String user, String password) {
 //        wait.until(ExpectedConditions.visibilityOfElementLocated(USERNAME_FIELD));
         driver.findElement(USERNAME_FIELD).sendKeys(user);
         driver.findElement(PASSWORD_FIELD).sendKeys(password);
         driver.findElement(LOGIN_BUTTON).click();
+        return new ProductsPage(driver);
+    }
+
+    @Step("Вход в систему негативными кредами")
+    public LoginPage loginWithNegativeCred(String user, String password) {
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(USERNAME_FIELD));
+        driver.findElement(USERNAME_FIELD).sendKeys(user);
+        driver.findElement(PASSWORD_FIELD).sendKeys(password);
+        driver.findElement(LOGIN_BUTTON).click();
+        return this;
     }
 
     public String getErrorMessage() {
