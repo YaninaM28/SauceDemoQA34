@@ -43,6 +43,7 @@ public class BaseTest {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("--headless");
             driver = new EdgeDriver(options);
+
         }
 
         iTestContext.setAttribute("driver", driver);
