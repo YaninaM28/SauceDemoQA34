@@ -42,7 +42,7 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("edge")) {
             EdgeOptions options = new EdgeOptions();
             options.addArguments("--headless");
-            driver = new EdgeDriver();
+            driver = new EdgeDriver(options);
         }
 
         iTestContext.setAttribute("driver", driver);
