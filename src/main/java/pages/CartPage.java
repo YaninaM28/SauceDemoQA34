@@ -1,10 +1,12 @@
 package pages;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class CartPage extends BasePage {
 
     private final By INVENTORYITEMNAME = By.className("inventory_item_name");
@@ -28,12 +30,14 @@ public class CartPage extends BasePage {
 
     @Step("Открытие страницы для добавления данных пользователя для заказа")
     public CheckoutPage clickCheckout() {
+        log.info("Proceeding to checkout");
         driver.findElement(CHECKOUTBUTTON).click();
         return new CheckoutPage(driver);
     }
 
     @Step("Удалить товар из корзины")
     public CartPage clickRemoveButton() {
+        log.info("Removing product from cart");
         driver.findElement(REMOVEBUTTON).click();
         return this;
     }
