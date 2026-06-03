@@ -14,6 +14,9 @@ public abstract class BasePage {
     WebDriverWait wait;
     public final String BASE_URL = "https://www.saucedemo.com/";
 
+    String user;
+    String password;
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
