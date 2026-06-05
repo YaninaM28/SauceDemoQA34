@@ -29,7 +29,7 @@ public class LoginTest extends BaseTest {
     public void checkLoginWithPositiveCred() {
         loginPage.open()
                 .isPageOpened()
-                .login("standard_user", "secret_sauce");
+                .login(user, password);
         assertEquals(productsPage.getTitle(),
                 "Products",
                 "SO BAAAD");
@@ -50,7 +50,7 @@ public class LoginTest extends BaseTest {
     @TmsLink("SD-T01")
     public void checkLoginWithEmptyUserName() {
         loginPage.open()
-                .loginWithNegativeCred("", "secret_sauce");
+                .loginWithNegativeCred("", password);
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Username is required",
                 "SO BAAAD");
@@ -70,7 +70,7 @@ public class LoginTest extends BaseTest {
     @TmsLink("SD-T01")
     public void checkLoginWithEmptyPassword() {
         loginPage.open()
-                .loginWithNegativeCred("standard_user", "");
+                .loginWithNegativeCred(user, "");
         assertEquals(loginPage.getErrorMessage(),
                 "Epic sadface: Password is required",
                 "SO BAAAD");
